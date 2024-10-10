@@ -18,9 +18,6 @@ public:
 
 	bool destroy();
 
-	int getWidth();
-	int getHeight();
-
 private:
 	SDL_Window* mWindow = NULL;
 	SDL_Renderer* mRenderer = NULL;

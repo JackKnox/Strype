@@ -5,10 +5,23 @@
 
 Window::Window()
 {
+	//Init SDL and other stuff...
+	if (!init())
+	{
+		printf("Failed to initialize!\n");
+	}
+
+	//Load media
+	if (!loadMedia())
+	{
+		printf("Failed to load media!\n");
+	}
 }
 
 Window::~Window()
 {
+	//Free resources and close SDL 
+	destroy();
 }
 
 bool Window::init()
@@ -63,68 +76,41 @@ bool Window::loadMedia()
 	//Loading success flag
 	bool success = true;
 
-	//Load arrow
-	mArrowTexture.loadFromFile(mRenderer, "res/lettuce.png");
+	mArrowTexture.BindRenderer(mRenderer);
+	success = mArrowTexture.loadFromFile("res/lettuce.png") & true;
 
 	return success;
 }
 
 void Window::loop()
 {
-	//Start up SDL and create window
-	if (!init())
+	//Main loop flag
+	bool quit = false;
+	SDL_Event e;
+
+	//While application is running
+	while (!quit)
 	{
-		printf("Failed to initialize!\n");
-	}
-	else
-	{
-		//Load media
-		if (!loadMedia())
+		//Handle events on queue
+		while (SDL_PollEvent(&e) != 0)
 		{
-			printf("Failed to load media!\n");
-		}
-		else
-		{
-			//Main loop flag
-			bool quit = false;
-
-			//Event handler
-			SDL_Event e;
-
-			//Angle of rotation
-			double degrees = 0;
-
-			//Flip type
-			SDL_RendererFlip flipType = SDL_FLIP_NONE;
-
-			//While application is running
-			while (!quit)
+			//User requests quit
+			if (e.type == SDL_QUIT)
 			{
-				//Handle events on queue
-				while (SDL_PollEvent(&e) != 0)
-				{
-					//User requests quit
-					if (e.type == SDL_QUIT)
-					{
-						quit = true;
-					}
-				}
-
-				//Clear screen
-				SDL_SetRenderDrawColor(mRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-				SDL_RenderClear(mRenderer);
-
-				//Render arrow
-				mArrowTexture.render(mRenderer, (SCREEN_WIDTH - mArrowTexture.getWidth()) / 2, (SCREEN_HEIGHT - mArrowTexture.getHeight()) / 2, NULL, degrees, NULL, flipType);
-
-				//Update screen
-				SDL_RenderPresent(mRenderer);
+				quit = true;
 			}
 		}
-	}
 
-	//Free resources and close SDL 
-	destroy();
+		//Clear screen
+		SDL_SetRenderDrawColor(mRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+		SDL_RenderClear(mRenderer);
+
+		//Render arrow
+		mArrowTexture.render((SCREEN_WIDTH - mArrowTexture.getWidth()) / 2, (SCREEN_HEIGHT - mArrowTexture.getHeight()) / 2, NULL, 0, NULL, SDL_FLIP_NONE);
+
+		//Update screen
+		SDL_RenderPresent(mRenderer);
+	}
 }
 
 bool Window::destroy()

@@ -13,7 +13,7 @@ public:
 	~Texture();
 
 	//Loads image at specified path
-	bool loadFromFile(SDL_Renderer* renderer, std::string path);
+	bool loadFromFile(std::string path);
 
 	//Deallocates texture
 	void free();
@@ -28,7 +28,9 @@ public:
 	void setAlpha(Uint8 alpha);
 
 	//Renders texture at given point
-	void render(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void render(int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+
+	void BindRenderer(SDL_Renderer* renderer);
 
 	//Gets image dimensions
 	int getWidth();
@@ -37,6 +39,7 @@ public:
 private:
 	//The actual hardware texture
 	SDL_Texture* mTexture;
+	SDL_Renderer* mBoundRenderer;
 
 	//Image dimensions
 	int mWidth;

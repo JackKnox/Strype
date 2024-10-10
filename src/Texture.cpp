@@ -1,10 +1,12 @@
 #include "Texture.h"
 #include <iostream>
+#include <SDL/SDL.h>
 
 Texture::Texture()
 {
 	//Initialize
 	mTexture = NULL;
+	mBoundRenderer = NULL;
 	mWidth = 0;
 	mHeight = 0;
 }
@@ -15,7 +17,7 @@ Texture::~Texture()
 	free();
 }
 
-bool Texture::loadFromFile(SDL_Renderer* renderer, std::string path)
+bool Texture::loadFromFile(std::string path)
 {
 	bool success = true;
 
@@ -30,14 +32,14 @@ bool Texture::loadFromFile(SDL_Renderer* renderer, std::string path)
 	if (loadedSurface == NULL)
 	{
 		std::cout << "Unable to load image " << path.c_str() << "SDL_image Error: " << IMG_GetError() << std::endl;
-		success = false;
+		return false; // Return instead of 'success' to clear error
 	}
 
 	//Color key image
 	SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
 
 	//Create texture from surface pixels
-	newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+	newTexture = SDL_CreateTextureFromSurface(mBoundRenderer, loadedSurface);
 	if (newTexture == NULL)
 	{
 		std::cout << "Unable to create texture from " << path.c_str() << " SDL Error : " << SDL_GetError() << std::endl;
@@ -92,7 +94,7 @@ void Texture::setAlpha(Uint8 alpha)
 	SDL_SetTextureAlphaMod(mTexture, alpha);
 }
 
-void Texture::render(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
+void Texture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
 {
 	//Set rendering space and render to screen
 	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
@@ -105,7 +107,12 @@ void Texture::render(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip, doubl
 	}
 
 	//Render to screen
-	SDL_RenderCopyEx(renderer, mTexture, clip, &renderQuad, angle, center, flip);
+	SDL_RenderCopyEx(mBoundRenderer, mTexture, clip, &renderQuad, angle, center, flip);
+}
+
+void Texture::BindRenderer(SDL_Renderer* renderer)
+{
+	mBoundRenderer = renderer;
 }
 
 int Texture::getWidth()
