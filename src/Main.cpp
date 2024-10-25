@@ -1,7 +1,6 @@
 #include "engine/Application.h"
-#include "engine/ResourceManager.h"
 
-int main(int argc, char* args[])
+int main(int argc, char* argv[])
 {
 	Application app;
 	app.run();

@@ -13,7 +13,7 @@ public:
 	Window();
 
 	//Creates window
-	bool init(std::string name);
+	unsigned int init(std::string name);
 
 	//Handles window events
 	void handleEvent(SDL_Event& e);
@@ -39,6 +39,8 @@ public:
 	bool hasKeyboardFocus();
 	bool isMinimized();
 	bool isShown();
+
+	SDL_Renderer* getRenderer();
 
 private:
 	//Window data

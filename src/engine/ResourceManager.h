@@ -1,17 +1,19 @@
 #pragma once
 
-#include <unordered_map>
 #include <SDL/SDL.h>
-
-#include "Application.h"
+#include <string>
+#include <unordered_map>
 
 class ResourceManager
 {
 public:
-	ResourceManager(Application* app);
+	void init(SDL_Renderer* renderer);
 
+	SDL_Texture* getTexture(std::string& path);
+
+	void shutdown();
 private:
-	Application* currentApp;
+	SDL_Renderer* mRenderer;
 
 	std::unordered_map<std::string, SDL_Texture*> mTextures{};
 };

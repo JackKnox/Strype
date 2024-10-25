@@ -1,5 +1,3 @@
-#include <SDL/SDL_image.h>
-
 #include "Application.h"
 
 unsigned int Application::init()
@@ -28,16 +26,31 @@ unsigned int Application::init()
 		return 3;
 	}
 
+	//Initialize the windows
+	for (int i = 0; i < TOTAL_WINDOWS; ++i)
+	{
+		unsigned int error = mWindows[i].init(DEFAULT_WINDOWS_NAME);
+		if (error > 0)
+		{
+			SDL_Quit();
+			IMG_Quit();
+			printf("System Error: %i", error);
+			return 4;
+		}
+	}
+	
+	mResources.init(mWindows[0].getRenderer());
+	
 	return 0;
 }
 
-bool Application::loop(SDL_Event* e)
+bool Application::loop(SDL_Event& e)
 {
 	//Handle events on queue
-	while (SDL_PollEvent(e) != 0)
+	while (SDL_PollEvent(&e) != 0)
 	{
 		//User requests quit
-		if (e->type == SDL_QUIT)
+		if (e.type == SDL_QUIT)
 		{
 			return true;
 		}
@@ -45,7 +58,7 @@ bool Application::loop(SDL_Event* e)
 		//Handle window events
 		for (int i = 0; i < TOTAL_WINDOWS; ++i)
 		{
-			mWindows[i].handleEvent(*e);
+			mWindows[i].handleEvent(e);
 		}
 	}
 
@@ -53,6 +66,7 @@ bool Application::loop(SDL_Event* e)
 	for (int i = 0; i < TOTAL_WINDOWS; ++i)
 	{
 		mWindows[i].render();
+		SDL_RenderPresent(mWindows[i].getRenderer());
 	}
 
 	//Check all windows
@@ -83,6 +97,8 @@ void Application::close()
 		mWindows[i].free();
 	}
 
+	mResources.shutdown();
+
 	//Quit SDL subsystems
 	SDL_Quit();
 	IMG_Quit();
@@ -92,15 +108,9 @@ unsigned int Application::run()
 {
 	//Start up SDL
 	unsigned int error = init();
-	if (error > 0)
+	if (init() > 0)
 	{
 		printf("System Error: %i\n", error);
-	}
-
-	//Initialize the rest of the windows
-	for (int i = 0; i < TOTAL_WINDOWS; ++i)
-	{
-		mWindows[i].init(DEFAULT_WINDOWS_NAME);
 	}
 
 	bool quit = false;
@@ -109,7 +119,7 @@ unsigned int Application::run()
 	//While application is running
 	while (!quit)
 	{
-		quit = this->loop(&e);
+		quit = this->loop(e);
 	}
 
 	//Closes window and SDL

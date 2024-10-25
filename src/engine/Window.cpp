@@ -21,14 +21,14 @@ Window::Window()
 	mHeight = 0;
 }
 
-bool Window::init(std::string name)
+unsigned int Window::init(std::string name)
 {
 	//Create window
 	mWindow = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 	if (mWindow == NULL)
 	{
 		printf("SDL Error: %s\n", SDL_GetError());
-		return false;
+		return 1;
 	}
 
 	//Create renderer for window
@@ -38,7 +38,7 @@ bool Window::init(std::string name)
 		printf("SDL Error: %s\n", SDL_GetError());
 		SDL_DestroyWindow(mWindow);
 		mWindow = NULL;
-		return false;
+		return 2;
 	}
 
 	//Initialize renderer color
@@ -53,7 +53,7 @@ bool Window::init(std::string name)
 	mWidth = SCREEN_WIDTH;
 	mHeight = SCREEN_HEIGHT;
 
-	return mWindow != NULL && mRenderer != NULL;
+	return 0;
 }
 
 void Window::handleEvent(SDL_Event& e)
@@ -156,7 +156,7 @@ void Window::render()
 		SDL_RenderClear(mRenderer);
 
 		//Update screen
-		SDL_RenderPresent(mRenderer);
+		
 	}
 }
 
@@ -201,4 +201,9 @@ bool Window::isMinimized()
 bool Window::isShown()
 {
 	return mShown;
+}
+
+SDL_Renderer* Window::getRenderer()
+{
+	return mRenderer;
 }
