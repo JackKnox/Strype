@@ -1,12 +1,7 @@
 #pragma once
 
-#include "Window.h"
 #include "ResourceManager.h"
-
-#include <SDL/SDL_image.h>
-
-const int TOTAL_WINDOWS = 3;
-const std::string DEFAULT_WINDOWS_NAME = "Test Window";
+#include "Window.h"
 
 class Application 
 {
@@ -24,7 +19,7 @@ public:
 	unsigned int run();
 
 private:
-	Window mWindows[TOTAL_WINDOWS];
+	Window mWindow;
 	ResourceManager mResources;
 };
 

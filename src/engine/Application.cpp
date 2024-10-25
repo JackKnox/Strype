@@ -1,20 +1,47 @@
 #include "Application.h"
 
+#include "Errors.h"
+
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_mixer.h>
+#include <SDL/SDL_ttf.h>
+
 unsigned int Application::init()
 {
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		printf("SDL Error: %s\n", SDL_GetError());
-		return 1;
+		return ERROR_INIT_SDL;
 	}
-
+	
 	//Initialize SDL_image
-	if (IMG_Init(IMG_INIT_PNG) < 0)
+	int imgFlags = IMG_INIT_PNG;
+	if (!(IMG_Init(imgFlags) & imgFlags))
 	{
 		SDL_Quit();
 		printf("SDL_image Error: %s\n", IMG_GetError());
-		return 2;
+		return ERROR_INIT_SDL_IMAGE;
+	}
+
+	//Initialize SDL_mixer
+	int mixFlags = MIX_INIT_MP3 | MIX_INIT_OGG;
+	if (!(Mix_Init(mixFlags) & mixFlags))
+	{
+		SDL_Quit();
+		IMG_Quit();
+		printf("SDL_mixer Error: %s\n", Mix_GetError());
+		return ERROR_INIT_SDL_MIXER;
+	}
+
+	//Initialize SDL_ttf
+	if (TTF_Init() < 0)
+	{
+		SDL_Quit();
+		IMG_Quit();
+		Mix_Quit();
+		printf("SDL_mixer Error: %s\n", Mix_GetError());
+		return ERROR_INIT_SDL_TTF;
 	}
 
 	//Set texture filtering to linear
@@ -22,24 +49,24 @@ unsigned int Application::init()
 	{
 		SDL_Quit();
 		IMG_Quit();
+		Mix_Quit();
+		TTF_Quit();
 		printf("SDL Error: Texture filtering cannot be set to linear");
-		return 3;
+		return ERROR_SDL_ANTIALISLING;
 	}
 
 	//Initialize the windows
-	for (int i = 0; i < TOTAL_WINDOWS; ++i)
+	if (unsigned int error = mWindow.init("Test Window"); error > 0)
 	{
-		unsigned int error = mWindows[i].init(DEFAULT_WINDOWS_NAME);
-		if (error > 0)
-		{
-			SDL_Quit();
-			IMG_Quit();
-			printf("System Error: %i", error);
-			return 4;
-		}
+		SDL_Quit();
+		IMG_Quit();
+		Mix_Quit();
+		TTF_Quit();
+		return error;
 	}
 	
-	mResources.init(mWindows[0].getRenderer());
+	//Load all resources
+	mResources.init(mWindow.getRenderer());
 	
 	return 0;
 }
@@ -56,32 +83,16 @@ bool Application::loop(SDL_Event& e)
 		}
 
 		//Handle window events
-		for (int i = 0; i < TOTAL_WINDOWS; ++i)
-		{
-			mWindows[i].handleEvent(e);
-		}
+		mWindow.handleEvent(e);
 	}
 
 	//Update all windows
-	for (int i = 0; i < TOTAL_WINDOWS; ++i)
-	{
-		mWindows[i].render();
-		SDL_RenderPresent(mWindows[i].getRenderer());
-	}
-
-	//Check all windows
-	bool allWindowsClosed = true;
-	for (int i = 0; i < TOTAL_WINDOWS; ++i)
-	{
-		if (mWindows[i].isShown())
-		{
-			allWindowsClosed = false;
-			break;
-		}
-	}
-
+	mWindow.render();
+	SDL_RenderCopy(mWindow.getRenderer(), mResources.getTexture("lettuce.png"), nullptr, nullptr);
+	SDL_RenderPresent(mWindow.getRenderer());
+	
 	//Application closed all windows
-	if (allWindowsClosed)
+	if (!mWindow.isShown())
 	{
 		return true;
 	}
@@ -92,25 +103,25 @@ bool Application::loop(SDL_Event& e)
 void Application::close()
 {
 	//Destroy windows
-	for (int i = 0; i < TOTAL_WINDOWS; ++i)
-	{
-		mWindows[i].free();
-	}
+	mWindow.free();
 
+	//Free all resources
 	mResources.shutdown();
 
 	//Quit SDL subsystems
 	SDL_Quit();
 	IMG_Quit();
+	Mix_Quit();
+	TTF_Quit();
 }
 
 unsigned int Application::run()
 {
 	//Start up SDL
-	unsigned int error = init();
-	if (init() > 0)
+	if (unsigned int error = init(); error > 0)
 	{
 		printf("System Error: %i\n", error);
+		return error;
 	}
 
 	bool quit = false;

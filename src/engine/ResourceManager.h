@@ -9,7 +9,7 @@ class ResourceManager
 public:
 	void init(SDL_Renderer* renderer);
 
-	SDL_Texture* getTexture(std::string& path);
+	SDL_Texture* getTexture(const std::string& path);
 
 	void shutdown();
 private:

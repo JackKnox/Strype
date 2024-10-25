@@ -13,7 +13,7 @@ public:
 	Window();
 
 	//Creates window
-	unsigned int init(std::string name);
+	unsigned int init(const std::string& name);
 
 	//Handles window events
 	void handleEvent(SDL_Event& e);

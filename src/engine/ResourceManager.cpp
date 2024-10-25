@@ -17,7 +17,7 @@ void ResourceManager::init(SDL_Renderer* renderer)
     }
 }
 
-SDL_Texture* ResourceManager::getTexture(std::string& path)
+SDL_Texture* ResourceManager::getTexture(const std::string& path)
 {
     if (mTextures.find(path) != mTextures.end()) {
         return mTextures[path];
@@ -29,11 +29,13 @@ SDL_Texture* ResourceManager::getTexture(std::string& path)
         printf("SDL_image Error: %s\n", IMG_GetError());
     }
 
-    mTextures[path] = tex;
+    mTextures[std::filesystem::path(path).filename().string()] = tex;
     return tex;
 }
 
 void ResourceManager::shutdown()
 {
-
+    for (auto& t : mTextures) {
+        SDL_DestroyTexture(t.second);
+    }
 }

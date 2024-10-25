@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "Errors.h"
 
 #include <sstream>
 #include <string>
@@ -21,14 +22,14 @@ Window::Window()
 	mHeight = 0;
 }
 
-unsigned int Window::init(std::string name)
+unsigned int Window::init(const std::string& name)
 {
 	//Create window
 	mWindow = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 	if (mWindow == NULL)
 	{
 		printf("SDL Error: %s\n", SDL_GetError());
-		return 1;
+		return ERROR_CREATE_WINDOW;
 	}
 
 	//Create renderer for window
@@ -37,8 +38,7 @@ unsigned int Window::init(std::string name)
 	{
 		printf("SDL Error: %s\n", SDL_GetError());
 		SDL_DestroyWindow(mWindow);
-		mWindow = NULL;
-		return 2;
+		return ERROR_CREATE_RENDERER;
 	}
 
 	//Initialize renderer color
@@ -165,6 +165,11 @@ void Window::free()
 	if (mWindow != NULL)
 	{
 		SDL_DestroyWindow(mWindow);
+	}
+
+	if (mRenderer != NULL)
+	{
+		SDL_DestroyRenderer(mRenderer);
 	}
 
 	mMouseFocus = false;
