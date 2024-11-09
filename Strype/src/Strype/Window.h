@@ -1,7 +1,5 @@
 #pragma once
 
-#include "stypch.h"
-
 #include "Events/Event.h"
 
 namespace Strype {

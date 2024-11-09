@@ -105,6 +105,9 @@
     <ClInclude Include="src\Strype\Core\Timestep.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\API\OpenGL\OpenGLShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Strype\Log.cpp">
@@ -165,6 +168,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Strype\Renderer\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\API\OpenGL\OpenGLShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

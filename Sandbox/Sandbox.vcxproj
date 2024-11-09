@@ -71,20 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\include;C:\Users\Jack\Documents\JackJackStudios\Strype\Strype\src;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Strype\src;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\include;C:\Users\Jack\Documents\JackJackStudios\Strype\Strype\src;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Strype\src;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\include;C:\Users\Jack\Documents\JackJackStudios\Strype\Strype\src;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Strype\src;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\include;C:\Users\Jack\Documents\JackJackStudios\Strype\Strype\src;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Strype\src;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -96,7 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Users\Jack\Documents\JackJackStudios\Strype\x64\Debug\Strype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Strype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -113,7 +113,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Users\Jack\Documents\JackJackStudios\Strype\x64\Debug\Strype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Strype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,7 +126,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Users\Jack\Documents\JackJackStudios\Strype\x64\Debug\Strype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Strype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -143,7 +143,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Users\Jack\Documents\JackJackStudios\Strype\x64\Debug\Strype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Strype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -71,20 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)src;C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)src;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)src;C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)src;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)src;C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)src;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)src;C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)src;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -102,7 +102,8 @@
       <AdditionalDependencies>glfw3.lib;opengl32.lib;GLAD.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>call "C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\dll\include.bat" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -128,7 +129,8 @@
       <AdditionalDependencies>glfw3.lib;opengl32.lib;GLAD.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>call "C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\dll\include.bat" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -150,7 +152,8 @@
       <AdditionalDependencies>glfw3.lib;opengl32.lib;GLAD.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>call "C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\dll\include.bat" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -176,13 +179,15 @@
       <AdditionalDependencies>glfw3.lib;opengl32.lib;GLAD.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>call "C:\Users\Jack\Documents\DO NOT TOUCH\C++ libs\dll\include.bat" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\API\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Strype\Core\Timestep.h" />
     <ClInclude Include="src\Strype\Renderer\Camera.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLRendererAPI.h" />
@@ -215,6 +220,7 @@
     <ClInclude Include="src\Strype\Renderer\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\API\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Strype\Renderer\Camera.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLVertexArray.cpp" />
