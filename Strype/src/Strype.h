@@ -15,6 +15,7 @@
 #include "Strype/Renderer/RenderCommand.h"
 #include "Strype/Renderer/Buffer.h"
 #include "Strype/Renderer/Shader.h"
+#include "Strype/Renderer/Texture.h"
 #include "Strype/Renderer/VertexArray.h"
 #include "Strype/Renderer/Camera.h"
 // -----------------------------------

@@ -6,10 +6,10 @@ struct GLFWwindow;
 
 namespace Strype {
 
-	class GlfwContext : public GraphicsContext
+	class OpenGLContext : public GraphicsContext
 	{
 	public:
-		GlfwContext(GLFWwindow* windowHandle);
+		OpenGLContext(GLFWwindow* windowHandle);
 
 		virtual void Init() override;
 		virtual void SwapBuffers() override;

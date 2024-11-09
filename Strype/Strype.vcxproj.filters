@@ -69,7 +69,7 @@
     <ClInclude Include="src\Strype\Renderer\GraphicsContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\API\GLFW\GlfwContext.h">
+    <ClInclude Include="src\API\GLFW\OpenGLContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Strype\Renderer\Shader.h">
@@ -108,6 +108,12 @@
     <ClInclude Include="src\API\OpenGL\OpenGLShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Strype\Renderer\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\API\OpenGL\OpenGLTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Strype\Log.cpp">
@@ -137,7 +143,7 @@
     <ClCompile Include="src\API\GLFW\GlfwKeys.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\API\GLFW\GlfwContext.cpp">
+    <ClCompile Include="src\API\GLFW\OpenGLContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Strype\Renderer\Shader.cpp">
@@ -171,6 +177,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\API\OpenGL\OpenGLShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Strype\Renderer\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\API\OpenGL\OpenGLTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

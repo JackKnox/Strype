@@ -188,11 +188,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\API\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\API\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Strype\Core\Timestep.h" />
     <ClInclude Include="src\Strype\Renderer\Camera.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\API\GLFW\GlfwContext.h" />
+    <ClInclude Include="src\API\GLFW\OpenGLContext.h" />
     <ClInclude Include="src\API\GLFW\GlfwInput.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Strype\ImGui\ImGuiLayer.h" />
@@ -204,6 +205,7 @@
     <ClInclude Include="src\Strype\Renderer\Renderer.h" />
     <ClInclude Include="src\Strype\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Strype\Renderer\Shader.h" />
+    <ClInclude Include="src\Strype\Renderer\Texture.h" />
     <ClInclude Include="src\stypch.h" />
     <ClInclude Include="src\Strype\Application.h" />
     <ClInclude Include="src\Strype\Core.h" />
@@ -221,10 +223,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\API\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\API\OpenGL\OpenGLTexture.cpp" />
+    <ClCompile Include="src\stb_image.cpp" />
     <ClCompile Include="src\Strype\Renderer\Camera.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\API\GLFW\GlfwContext.cpp" />
+    <ClCompile Include="src\API\GLFW\OpenGLContext.cpp" />
     <ClCompile Include="src\API\GLFW\GlfwInput.cpp" />
     <ClCompile Include="src\API\GLFW\GlfwKeys.h" />
     <ClCompile Include="src\API\OpenGL\OpenGLBuffer.cpp" />
@@ -235,6 +239,7 @@
     <ClCompile Include="src\Strype\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Strype\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Strype\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Strype\Renderer\Texture.cpp" />
     <ClCompile Include="src\stypch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

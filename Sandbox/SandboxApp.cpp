@@ -21,7 +21,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		std::shared_ptr<Strype::VertexBuffer> vertexBuffer;
+		Strype::Ref<Strype::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Strype::VertexBuffer::Create(vertices, sizeof(vertices)));
 		Strype::BufferLayout layout = {
 			{ Strype::ShaderDataType::Float3, "a_Position" },
@@ -31,28 +31,29 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Strype::IndexBuffer> indexBuffer;
+		Strype::Ref<Strype::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Strype::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		m_SquareVA.reset(Strype::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		std::shared_ptr<Strype::VertexBuffer> squareVB;
+		Strype::Ref<Strype::VertexBuffer> squareVB;
 		squareVB.reset(Strype::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-			{ Strype::ShaderDataType::Float3, "a_Position" }
+			{ Strype::ShaderDataType::Float3, "a_Position" },
+			{ Strype::ShaderDataType::Float2, "a_TexCoord" }
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Strype::IndexBuffer> squareIB;
+		Strype::Ref<Strype::IndexBuffer> squareIB;
 		squareIB.reset(Strype::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -126,6 +127,47 @@ public:
 		)";
 
 		m_FlatColorShader.reset(Strype::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+			
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(Strype::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+
+		m_Texture = Strype::Texture::Create("assets/textures/Checkerboard.png");
+		m_ChernoLogoTexture = Strype::Texture::Create("assets/textures/ChernoLogo.png");
+
+		std::dynamic_pointer_cast<Strype::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Strype::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Strype::Timestep ts) override
@@ -168,7 +210,14 @@ public:
 			}
 		}
 
-		Strype::Renderer::Submit(m_Shader, m_VertexArray);
+		m_Texture->Bind();
+		Strype::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_ChernoLogoTexture->Bind();
+		Strype::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+
+		// Triangle
+		// Strype::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Strype::Renderer::EndScene();
 	}
@@ -184,11 +233,13 @@ public:
 	{
 	}
 private:
-	std::shared_ptr<Strype::Shader> m_Shader;
-	std::shared_ptr<Strype::VertexArray> m_VertexArray;
+	Strype::Ref<Strype::Shader> m_Shader;
+	Strype::Ref<Strype::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Strype::Shader> m_FlatColorShader;
-	std::shared_ptr<Strype::VertexArray> m_SquareVA;
+	Strype::Ref<Strype::Shader> m_FlatColorShader, m_TextureShader;
+	Strype::Ref<Strype::VertexArray> m_SquareVA;
+
+	Strype::Ref<Strype::Texture> m_Texture, m_ChernoLogoTexture;
 
 	Strype::Camera m_Camera;
 	glm::vec3 m_CameraPosition;
