@@ -106,7 +106,7 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,7 +133,7 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -156,7 +156,7 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -183,10 +183,11 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\API\OpenAL\OpenALAudio.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Strype\Core\Timestep.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="src\Strype\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Strype\Renderer\Shader.h" />
     <ClInclude Include="src\Strype\Renderer\Texture.h" />
+    <ClInclude Include="src\Strype\Audio.h" />
     <ClInclude Include="src\stypch.h" />
     <ClInclude Include="src\Strype\Application.h" />
     <ClInclude Include="src\Strype\Core.h" />
@@ -222,6 +224,7 @@
     <ClInclude Include="src\Strype\Renderer\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\API\OpenAL\OpenALAudio.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\stb_image.cpp" />

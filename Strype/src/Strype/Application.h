@@ -17,7 +17,7 @@ namespace Strype {
 	{
 	public:
 		Application();
-		virtual ~Application() = default;
+		~Application();
 
 		virtual void Run();
 

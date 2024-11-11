@@ -114,6 +114,12 @@
     <ClInclude Include="src\API\OpenGL\OpenGLTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Strype\Audio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\API\OpenAL\OpenALAudio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Strype\Log.cpp">
@@ -186,6 +192,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\API\OpenGL\OpenGLTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\API\OpenAL\OpenALAudio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

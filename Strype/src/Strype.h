@@ -7,6 +7,7 @@
 #include "Strype/Core/Timestep.h"
 
 #include "Strype/Input.h"
+#include "Strype/Audio.h"
 
 #include "Strype/ImGui/ImGuiLayer.h"
 
