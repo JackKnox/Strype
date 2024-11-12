@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Strype/Layer.h"
+#include "Strype/Core/Layer.h"
 
 #include "Strype/Events/ApplicationEvent.h"
 #include "Strype/Events/KeyEvent.h"

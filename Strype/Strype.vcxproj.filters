@@ -18,13 +18,13 @@
     <ClInclude Include="src\Strype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Strype\Log.h">
+    <ClInclude Include="src\Strype\Core\Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Strype\EntryPoint.h">
+    <ClInclude Include="src\Strype\Core\EntryPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Strype\Application.h">
+    <ClInclude Include="src\Strype\Core\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Strype\Events\Event.h">
@@ -42,25 +42,25 @@
     <ClInclude Include="src\stypch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Strype\Window.h">
+    <ClInclude Include="src\Strype\Core\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Strype\Core.h">
+    <ClInclude Include="src\Strype\Core\Core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\API\GLFW\GlfwWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Strype\Layer.h">
+    <ClInclude Include="src\Strype\Core\Layer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Strype\LayerStack.h">
+    <ClInclude Include="src\Strype\Core\LayerStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Strype\ImGui\ImGuiLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Strype\Input.h">
+    <ClInclude Include="src\Strype\Core\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\API\GLFW\GlfwInput.h">
@@ -69,7 +69,7 @@
     <ClInclude Include="src\Strype\Renderer\GraphicsContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\API\GLFW\OpenGLContext.h">
+    <ClInclude Include="src\API\OpenGL\OpenGLContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Strype\Renderer\Shader.h">
@@ -114,18 +114,21 @@
     <ClInclude Include="src\API\OpenGL\OpenGLTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Strype\Audio.h">
+    <ClInclude Include="src\Strype\Core\Audio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\API\OpenAL\OpenALAudio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Strype\Renderer\CameraController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Strype\Log.cpp">
+    <ClCompile Include="src\Strype\Core\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Strype\Application.cpp">
+    <ClCompile Include="src\Strype\Core\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\stypch.cpp">
@@ -134,10 +137,10 @@
     <ClCompile Include="src\API\GLFW\GlfwWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Strype\Layer.cpp">
+    <ClCompile Include="src\Strype\Core\Layer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Strype\LayerStack.cpp">
+    <ClCompile Include="src\Strype\Core\LayerStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Strype\ImGui\ImGuiLayer.cpp">
@@ -149,7 +152,7 @@
     <ClCompile Include="src\API\GLFW\GlfwKeys.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\API\GLFW\OpenGLContext.cpp">
+    <ClCompile Include="src\API\OpenGL\OpenGLContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Strype\Renderer\Shader.cpp">
@@ -195,6 +198,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\API\OpenAL\OpenALAudio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Strype\Renderer\CameraController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

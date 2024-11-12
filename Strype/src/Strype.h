@@ -1,13 +1,16 @@
 #pragma once
 
-#include "Strype/Application.h"
-#include "Strype/Layer.h"
-#include "Strype/Log.h"
+#include "Strype/Core/Application.h"
+#include "Strype/Core/Layer.h"
+#include "Strype/Core/Log.h"
 
 #include "Strype/Core/Timestep.h"
 
-#include "Strype/Input.h"
-#include "Strype/Audio.h"
+// ---Sub Modules------------------------
+#include "Strype/Core/Input.h"
+#include "Strype/Core/Audio.h"
+#include "Strype/Renderer/CameraController.h"
+// -----------------------------------
 
 #include "Strype/ImGui/ImGuiLayer.h"
 
@@ -24,4 +27,4 @@
 #include <glm/glm.hpp>
 #include <imgui/imgui.h>
 
-#include "Strype/EntryPoint.h"
+#include "Strype/Core/EntryPoint.h"

@@ -22,7 +22,7 @@ namespace Strype {
         if (!name || alcGetError(m_ALCDevice) != AL_NO_ERROR)
             name = alcGetString(m_ALCDevice, ALC_DEVICE_SPECIFIER);
         
-        STY_CORE_INFO("Opened \"{0}\"", name);
+        STY_CORE_INFO("Opened Audio Device: \"{0}\"", name);
     }
 
     void OpenALAudio::ShutdownImpl()

@@ -187,6 +187,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Strype\Renderer\CameraController.h" />
     <ClInclude Include="src\API\OpenAL\OpenALAudio.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLTexture.h" />
@@ -194,12 +195,12 @@
     <ClInclude Include="src\Strype\Renderer\Camera.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\API\GLFW\OpenGLContext.h" />
+    <ClInclude Include="src\API\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\API\GLFW\GlfwInput.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Strype\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\API\GLFW\GlfwWindow.h" />
-    <ClInclude Include="src\Strype\Input.h" />
+    <ClInclude Include="src\Strype\Core\Input.h" />
     <ClInclude Include="src\Strype\Renderer\Buffer.h" />
     <ClInclude Include="src\Strype\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Strype\Renderer\RenderCommand.h" />
@@ -207,23 +208,24 @@
     <ClInclude Include="src\Strype\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Strype\Renderer\Shader.h" />
     <ClInclude Include="src\Strype\Renderer\Texture.h" />
-    <ClInclude Include="src\Strype\Audio.h" />
+    <ClInclude Include="src\Strype\Core\Audio.h" />
     <ClInclude Include="src\stypch.h" />
-    <ClInclude Include="src\Strype\Application.h" />
-    <ClInclude Include="src\Strype\Core.h" />
-    <ClInclude Include="src\Strype\EntryPoint.h" />
+    <ClInclude Include="src\Strype\Core\Application.h" />
+    <ClInclude Include="src\Strype\Core\Core.h" />
+    <ClInclude Include="src\Strype\Core\EntryPoint.h" />
     <ClInclude Include="src\Strype\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Strype\Events\Event.h" />
     <ClInclude Include="src\Strype\Events\KeyEvent.h" />
     <ClInclude Include="src\Strype\Events\MouseEvent.h" />
-    <ClInclude Include="src\Strype\Layer.h" />
-    <ClInclude Include="src\Strype\LayerStack.h" />
-    <ClInclude Include="src\Strype\Log.h" />
+    <ClInclude Include="src\Strype\Core\Layer.h" />
+    <ClInclude Include="src\Strype\Core\LayerStack.h" />
+    <ClInclude Include="src\Strype\Core\Log.h" />
     <ClInclude Include="src\Strype.h" />
-    <ClInclude Include="src\Strype\Window.h" />
+    <ClInclude Include="src\Strype\Core\Window.h" />
     <ClInclude Include="src\Strype\Renderer\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Strype\Renderer\CameraController.cpp" />
     <ClCompile Include="src\API\OpenAL\OpenALAudio.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLTexture.cpp" />
@@ -231,7 +233,7 @@
     <ClCompile Include="src\Strype\Renderer\Camera.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\API\GLFW\OpenGLContext.cpp" />
+    <ClCompile Include="src\API\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\API\GLFW\GlfwInput.cpp" />
     <ClCompile Include="src\API\GLFW\GlfwKeys.h" />
     <ClCompile Include="src\API\OpenGL\OpenGLBuffer.cpp" />
@@ -253,10 +255,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stypch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stypch.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="src\Strype\Application.cpp" />
-    <ClCompile Include="src\Strype\Layer.cpp" />
-    <ClCompile Include="src\Strype\LayerStack.cpp" />
-    <ClCompile Include="src\Strype\Log.cpp" />
+    <ClCompile Include="src\Strype\Core\Application.cpp" />
+    <ClCompile Include="src\Strype\Core\Layer.cpp" />
+    <ClCompile Include="src\Strype\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Strype\Core\Log.cpp" />
     <ClCompile Include="src\Strype\Renderer\VertexArray.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

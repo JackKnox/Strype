@@ -5,7 +5,7 @@
 #include "Strype/Events/MouseEvent.h"
 #include "Strype/Events/KeyEvent.h"
 
-#include "OpenGLContext.h"
+#include "API/OpenGL/OpenGLContext.h"
 
 namespace Strype {
 
@@ -50,9 +50,8 @@ namespace Strype {
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
 
-		m_Context = new OpenGLContext(m_Window);
+		m_Context = new OpenGLContext(m_Window); //Uses OpenGL Context
 		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);

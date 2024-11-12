@@ -1,7 +1,7 @@
 #include "stypch.h"
 #include "GlfwInput.h"
 
-#include "Strype/Application.h"
+#include "Strype/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Strype {

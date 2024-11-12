@@ -15,6 +15,8 @@ namespace Strype {
 
 	void OpenGLContext::Init()
 	{
+		glfwMakeContextCurrent(m_WindowHandle);
+
 		int status = gladLoadGL();
 		STY_CORE_ASSERT(status, "Failed to initialize Glad!");
 		

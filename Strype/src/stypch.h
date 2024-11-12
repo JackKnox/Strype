@@ -13,4 +13,4 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Strype/Log.h"
+#include "Strype/Core/Log.h"

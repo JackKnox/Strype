@@ -2,7 +2,7 @@
 
 #include <GLFW/glfw3.h>
 
-#include "Strype/Window.h"
+#include "Strype/Core/Window.h"
 #include "Strype/Renderer/GraphicsContext.h"
 
 namespace Strype {
