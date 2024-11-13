@@ -42,21 +42,21 @@ namespace Strype {
 		Add(name, shader);
 	}
 
-	Strype::Ref<Strype::Shader> ShaderLibrary::Load(const std::string& filepath)
+	Ref<Shader> ShaderLibrary::Load(const std::string& filepath)
 	{
 		auto shader = Shader::Create(filepath);
 		Add(shader);
 		return shader;
 	}
 
-	Strype::Ref<Strype::Shader> ShaderLibrary::Load(const std::string& name, const std::string& filepath)
+	Ref<Shader> ShaderLibrary::Load(const std::string& name, const std::string& filepath)
 	{
 		auto shader = Shader::Create(filepath);
 		Add(name, shader);
 		return shader;
 	}
 
-	Strype::Ref<Strype::Shader> ShaderLibrary::Get(const std::string& name)
+	Ref<Shader> ShaderLibrary::Get(const std::string& name)
 	{
 		STY_CORE_ASSERT(Exists(name), "Shader not found!");
 		return m_Shaders[name];

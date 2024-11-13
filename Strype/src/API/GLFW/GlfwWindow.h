@@ -28,8 +28,8 @@ namespace Strype {
 		void Init(const WindowProps& props);
 		void Shutdown();
 
-		GLFWwindow* m_Window;
-		GraphicsContext* m_Context;
+		GLFWwindow* m_Window; 
+		Scope<GraphicsContext> m_Context;
 
 		struct WindowData
 		{
