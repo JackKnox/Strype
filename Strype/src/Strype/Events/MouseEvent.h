@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Event.h"
+#include "Strype/Events/Event.h"
 
 namespace Strype {
 

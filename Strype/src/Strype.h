@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Strype/Core/Core.h"
+
 #include "Strype/Core/Application.h"
 #include "Strype/Core/Layer.h"
 #include "Strype/Core/Log.h"
@@ -26,5 +28,3 @@
 
 #include <glm/glm.hpp>
 #include <imgui/imgui.h>
-
-#include "Strype/Core/EntryPoint.h"

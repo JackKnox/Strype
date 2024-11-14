@@ -1,11 +1,7 @@
 #include "stypch.h"
-#include "LayerStack.h"
+#include "Strype/Core/LayerStack.h"
 
 namespace Strype {
-
-	LayerStack::LayerStack()
-	{
-	}
 
 	LayerStack::~LayerStack()
 	{

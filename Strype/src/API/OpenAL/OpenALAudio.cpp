@@ -7,6 +7,8 @@ namespace Strype {
 
     void OpenALAudio::InitImpl()
     {
+        STY_CORE_INFO("Initializing OpenAL");
+
         m_ALCDevice = alcOpenDevice(nullptr);
         STY_CORE_ASSERT(m_ALCDevice, "Could not get sound device");
 
@@ -27,6 +29,8 @@ namespace Strype {
 
     void OpenALAudio::ShutdownImpl()
     {
+        STY_CORE_INFO("Terminating OpenAL");
+
         alcMakeContextCurrent(nullptr);
         alcDestroyContext(m_ALCContext);
         alcCloseDevice(m_ALCDevice);

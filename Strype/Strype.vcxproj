@@ -240,6 +240,7 @@
     <ClCompile Include="src\Strype\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\API\GLFW\GlfwWindow.cpp" />
     <ClCompile Include="src\Strype\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Strype\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\Strype\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Strype\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Strype\Renderer\RendererAPI.cpp" />

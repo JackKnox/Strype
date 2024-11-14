@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Layer.h"
+#include "Strype/Core/Core.h"
+#include "Strype/Core/Layer.h"
 
 #include <vector>
 
@@ -9,7 +10,7 @@ namespace Strype {
 	class LayerStack
 	{
 	public:
-		LayerStack();
+		LayerStack() = default;
 		~LayerStack();
 
 		void PushLayer(Layer* layer);

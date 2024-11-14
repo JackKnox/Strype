@@ -2,6 +2,8 @@
 
 #include "stypch.h"
 
+#include "Strype/Core/Core.h"
+
 namespace Strype {
 
 	enum class EventType

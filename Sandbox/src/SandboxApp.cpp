@@ -1,11 +1,14 @@
 #include <Strype.h>
+#include <Strype/Core/EntryPoint.h>
 
 #include "API/OpenGL/OpenGLShader.h"
 
-#include "imgui/imgui.h"
+#include <imgui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+#include "Sandbox2D.h"
 
 class ExampleLayer : public Strype::Layer
 {
@@ -13,7 +16,7 @@ public:
 	ExampleLayer()
 		: Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{
-		m_VertexArray.reset(Strype::VertexArray::Create());
+		m_VertexArray = Strype::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -21,8 +24,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		Strype::Ref<Strype::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Strype::VertexBuffer::Create(vertices, sizeof(vertices)));
+		Strype::Ref<Strype::VertexBuffer> vertexBuffer = Strype::VertexBuffer::Create(vertices, sizeof(vertices));
 		Strype::BufferLayout layout = {
 			{ Strype::ShaderDataType::Float3, "a_Position" },
 			{ Strype::ShaderDataType::Float4, "a_Color" }
@@ -31,11 +33,10 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		Strype::Ref<Strype::IndexBuffer> indexBuffer;
-		indexBuffer.reset(Strype::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		Strype::Ref<Strype::IndexBuffer> indexBuffer = Strype::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		m_SquareVA.reset(Strype::VertexArray::Create());
+		m_SquareVA = Strype::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -44,17 +45,15 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		Strype::Ref<Strype::VertexBuffer> squareVB;
-		squareVB.reset(Strype::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		Strype::Ref<Strype::VertexBuffer> squareVB = Strype::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVB->SetLayout({
 			{ Strype::ShaderDataType::Float3, "a_Position" },
 			{ Strype::ShaderDataType::Float2, "a_TexCoord" }
-		});
+			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		Strype::Ref<Strype::IndexBuffer> squareIB;
-		squareIB.reset(Strype::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		Strype::Ref<Strype::IndexBuffer> squareIB = Strype::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string vertexSrc = R"(
@@ -92,6 +91,8 @@ public:
 			}
 		)";
 
+		m_Shader = Strype::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
+
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
 			
@@ -124,15 +125,15 @@ public:
 			}
 		)";
 
-		m_Shader = Strype::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 		m_FlatColorShader = Strype::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
+
 		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Strype::Texture::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogoTexture = Strype::Texture::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<Strype::OpenGLShader>(textureShader)->Bind();
-		std::dynamic_pointer_cast<Strype::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+		textureShader->Bind();
+		textureShader->SetInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Strype::Timestep ts) override
@@ -140,38 +141,37 @@ public:
 		// Update
 		m_CameraController.OnUpdate(ts);
 
-		//Render
+		// Render
 		Strype::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Strype::RenderCommand::Clear();
 
 		Strype::Renderer::BeginScene(m_CameraController.GetCamera());
+
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+
+		m_FlatColorShader->Bind();
+		m_FlatColorShader->SetFloat3("u_Color", m_SquareColor);
+
+		for (int y = 0; y < 20; y++)
 		{
-			glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-
-			std::dynamic_pointer_cast<Strype::OpenGLShader>(m_FlatColorShader)->Bind();
-			std::dynamic_pointer_cast<Strype::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
-
-			for (int y = 0; y < 20; y++)
+			for (int x = 0; x < 20; x++)
 			{
-				for (int x = 0; x < 20; x++)
-				{
-					glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
-					glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-					Strype::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
-				}
+				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				Strype::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
-
-			auto textureShader = m_ShaderLibrary.Get("Texture");
-
-			m_Texture->Bind();
-			Strype::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-			m_ChernoLogoTexture->Bind();
-			Strype::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
-
-			// Triangle
-			// Strype::Renderer::Submit(m_Shader, m_VertexArray);
 		}
+
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
+		m_Texture->Bind();
+		Strype::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_ChernoLogoTexture->Bind();
+		Strype::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		// Triangle
+		// Strype::Renderer::Submit(m_Shader, m_VertexArray);
+
 		Strype::Renderer::EndScene();
 	}
 
@@ -182,9 +182,9 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Strype::Event& event) override
+	void OnEvent(Strype::Event& e) override
 	{
-		m_CameraController.OnEvent(event);
+		m_CameraController.OnEvent(e);
 	}
 private:
 	Strype::ShaderLibrary m_ShaderLibrary;
@@ -205,14 +205,13 @@ class Sandbox : public Strype::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		// PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox()
 	{
-
 	}
-
 };
 
 Strype::Application* Strype::CreateApplication()
