@@ -11,6 +11,8 @@
 
 #include "Strype/ImGui/ImGuiLayer.h"
 
+int main(int argc, char** argv);
+
 namespace Strype {
 
 	class Application
@@ -18,8 +20,6 @@ namespace Strype {
 	public:
 		Application();
 		~Application();
-
-		virtual void Run();
 
 		void OnEvent(Event& e);
 
@@ -29,6 +29,7 @@ namespace Strype {
 		inline Window& GetWindow() { return *m_Window; }
 		inline static Application& Get() { return *s_Instance; }
 	private:
+		void Run();
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
@@ -41,6 +42,7 @@ namespace Strype {
 		float m_LastFrameTime = 0.0f;
 
 		static Application* s_Instance;
+		friend int ::main(int argc, char** argv);
 	};
 
 	// To be defined in CLIENT

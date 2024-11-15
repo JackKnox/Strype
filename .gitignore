@@ -2,3 +2,10 @@
 /.vs
 /Sandbox/x64
 /Strype/x64
+
+*.log
+
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters

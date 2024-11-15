@@ -40,8 +40,8 @@ void Sandbox2D::OnUpdate(Strype::Timestep ts)
 		STY_PROFILE_SCOPE("Renderer Draw");
 		Strype::Renderer::BeginScene(m_CameraController.GetCamera());
 
-		Strype::Renderer::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture);
-		Strype::Renderer::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+		Strype::Renderer::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f);
+		Strype::Renderer::DrawRotatedQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
 		Strype::Renderer::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_SquareColor);
 
 		Strype::Renderer::EndScene();
