@@ -6,7 +6,7 @@
 
 namespace Strype {
 
-	Scope<Input> Input::s_Instance = CreateScope<GlfwInput>();
+
 
 	bool GlfwInput::IsKeyPressedImpl(int keycode)
 	{

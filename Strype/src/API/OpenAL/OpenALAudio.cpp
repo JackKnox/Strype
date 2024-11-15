@@ -3,8 +3,6 @@
 
 namespace Strype {
 
-    Audio* Audio::s_Instance = new OpenALAudio();
-
     void OpenALAudio::InitImpl()
     {
         STY_CORE_INFO("Initializing OpenAL");

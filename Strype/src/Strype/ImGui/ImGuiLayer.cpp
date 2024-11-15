@@ -39,6 +39,7 @@ namespace Strype {
 			style.WindowRounding = 0.0f;
 			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 		}
+
 		Application& app = Application::Get();
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
 
@@ -78,11 +79,5 @@ namespace Strype {
 			ImGui::RenderPlatformWindowsDefault();
 			glfwMakeContextCurrent(backup_current_context);
 		}
-	}
-
-	void ImGuiLayer::OnImGuiRender()
-	{
-		//static bool show = true;
-		//ImGui::ShowDemoWindow(&show);
 	}
 }

@@ -13,4 +13,5 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Strype/Debug/Instrumentor.h"
 #include "Strype/Core/Log.h"
