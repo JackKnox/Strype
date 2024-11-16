@@ -4,7 +4,6 @@
 
 #include "Strype/Core/Log.h"
 #include "Strype/Renderer/Renderer.h"
-#include "Strype/Sub Modules/Audio/Audio.h"
 
 #include <glfw/glfw3.h>
 
@@ -23,7 +22,6 @@ namespace Strype {
 		m_Window->SetEventCallback(STY_BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
-		Audio::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -34,7 +32,6 @@ namespace Strype {
 		STY_PROFILE_FUNCTION();
 
 		Renderer::Shutdown();
-		Audio::Shutdown();
 	}
 
 	void Application::PushLayer(Layer* layer)
@@ -55,9 +52,9 @@ namespace Strype {
 
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
 		{
-			(*it)->OnEvent(e);
 			if (e.Handled)
 				break;
+			(*it)->OnEvent(e);
 		}
 	}
 

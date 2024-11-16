@@ -1,6 +1,7 @@
 #include "Sandbox2D.h"
 
 #include <imgui/imgui.h>
+#include <sndfile/sndfile.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -29,22 +30,35 @@ void Sandbox2D::OnUpdate(Strype::Timestep ts)
 	m_CameraController.OnUpdate(ts);
 
 	// Render
+	Strype::Renderer::ResetStats();
 	Strype::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 	Strype::RenderCommand::Clear();
 
+	static float rotation = 0.0f;
+	rotation += ts * 50.0f;
+
 	Strype::Renderer::BeginScene(m_CameraController.GetCamera());
-
-	Strype::Renderer::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f);
-	Strype::Renderer::DrawRotatedQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
-	Strype::Renderer::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_SquareColor);
-
+	for (float y = -5.0f; y < 5.0f; y += 0.5f)
+	{
+		for (float x = -5.0f; x < 5.0f; x += 0.5f)
+		{
+			glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.7f };
+			Strype::Renderer::DrawQuad({ x, y }, { 0.45f, 0.45f }, color);
+		}
+	}
 	Strype::Renderer::EndScene();
 }
 
 void Sandbox2D::OnImGuiRender()
 {
 	ImGui::Begin("Settings");
-	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+
+	auto stats = Strype::Renderer::GetStats();
+	ImGui::Text("Renderer2D Stats:");
+	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+	ImGui::Text("Quads: %d", stats.QuadCount);
+	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 	ImGui::End();
 }
 

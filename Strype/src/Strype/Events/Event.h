@@ -2,7 +2,7 @@
 
 #include "stypch.h"
 
-#include "Strype/Core/Core.h"
+#include "Strype/Core/Base.h"
 
 namespace Strype {
 

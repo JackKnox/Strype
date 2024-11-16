@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Strype/Core/Core.h"
+#include "Strype/Core/Base.h"
 
 #ifdef STY_PLATFORM_WINDOWS
 #	include "API/GLFW/GlfwKeys.h"

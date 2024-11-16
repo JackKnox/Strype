@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Strype/Core/Core.h"
+#include "Strype/Core/Base.h"
 
 #include "Strype/Core/Application.h"
 #include "Strype/Core/Layer.h"
@@ -10,7 +10,6 @@
 
 // ---Sub Modules---------------------
 #include "Strype/Sub Modules/Input/Input.h"
-#include "Strype/Sub Modules/Audio/Audio.h"
 #include "Strype/Renderer/CameraController.h"
 #include "Strype/Sub Modules/ImGui/ImGuiLayer.h"
 // -----------------------------------

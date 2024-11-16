@@ -162,7 +162,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;GLAD.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;GLAD.lib;Imgui.lib;OpenAL32.lib;sndfile.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -239,7 +239,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;GLAD.lib;Imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;GLAD.lib;Imgui.lib;OpenAL32.lib;sndfile.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -280,7 +280,6 @@
     <ClInclude Include="src\Strype\Core\InputCodes.h" />
     <ClInclude Include="src\Strype\Debug\Instrumentor.h" />
     <ClInclude Include="src\Strype\Renderer\CameraController.h" />
-    <ClInclude Include="src\API\OpenAL\OpenALAudio.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Strype\Core\Timestep.h" />
@@ -290,7 +289,6 @@
     <ClInclude Include="src\API\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\API\GLFW\GlfwInput.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\Strype\Sub Modules\Audio\Audio.h" />
     <ClInclude Include="src\Strype\Sub Modules\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\API\GLFW\GlfwWindow.h" />
     <ClInclude Include="src\Strype\Sub Modules\Input\Input.h" />
@@ -303,7 +301,7 @@
     <ClInclude Include="src\Strype\Renderer\Texture.h" />
     <ClInclude Include="src\stypch.h" />
     <ClInclude Include="src\Strype\Core\Application.h" />
-    <ClInclude Include="src\Strype\Core\Core.h" />
+    <ClInclude Include="src\Strype\Core\Base.h" />
     <ClInclude Include="src\Strype\Core\EntryPoint.h" />
     <ClInclude Include="src\Strype\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Strype\Events\Event.h" />
@@ -320,7 +318,6 @@
     <ClCompile Include="src\Strype\Sub Modules\Input\Input.cpp" />
     <ClCompile Include="src\Strype\Core\Window.cpp" />
     <ClCompile Include="src\Strype\Renderer\CameraController.cpp" />
-    <ClCompile Include="src\API\OpenAL\OpenALAudio.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\stb_image.cpp" />
@@ -331,7 +328,6 @@
     <ClCompile Include="src\API\GLFW\GlfwInput.cpp" />
     <ClCompile Include="src\API\GLFW\GlfwKeys.h" />
     <ClCompile Include="src\API\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\Strype\Sub Modules\Audio\Audio.cpp" />
     <ClCompile Include="src\Strype\Sub Modules\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\API\GLFW\GlfwWindow.cpp" />
     <ClCompile Include="src\Strype\Renderer\Buffer.cpp" />

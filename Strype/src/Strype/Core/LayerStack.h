@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Strype/Core/Core.h"
+#include "Strype/Core/Base.h"
 #include "Strype/Core/Layer.h"
 
 #include <vector>
