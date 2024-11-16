@@ -18,7 +18,7 @@ namespace Strype {
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "Hazel App");
 		~Application();
 
 		void OnEvent(Event& e);
@@ -27,6 +27,9 @@ namespace Strype {
 		void PushOverlay(Layer* layer);
 
 		inline Window& GetWindow() { return *m_Window; }
+
+		void Close();
+
 		inline static Application& Get() { return *s_Instance; }
 	private:
 		void Run();

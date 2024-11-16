@@ -17,5 +17,7 @@ public:
 private:
 	Strype::CameraController m_CameraController;
 
+	Strype::Ref<Strype::Framebuffer> m_Framebuffer;
+
 	Strype::Ref<Strype::Texture> m_CheckerboardTexture;
 };

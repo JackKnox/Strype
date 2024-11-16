@@ -277,6 +277,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\API\OpenGL\OpenGLFramebuffer.h" />
     <ClInclude Include="src\Strype\Core\InputCodes.h" />
     <ClInclude Include="src\Strype\Debug\Instrumentor.h" />
     <ClInclude Include="src\Strype\Renderer\CameraController.h" />
@@ -289,6 +290,7 @@
     <ClInclude Include="src\API\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\API\GLFW\GlfwInput.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Strype\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Strype\Sub Modules\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\API\GLFW\GlfwWindow.h" />
     <ClInclude Include="src\Strype\Sub Modules\Input\Input.h" />
@@ -315,6 +317,8 @@
     <ClInclude Include="src\Strype\Renderer\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\API\OpenGL\OpenGLFramebuffer.cpp" />
+    <ClCompile Include="src\Strype\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\Strype\Sub Modules\Input\Input.cpp" />
     <ClCompile Include="src\Strype\Core\Window.cpp" />
     <ClCompile Include="src\Strype\Renderer\CameraController.cpp" />

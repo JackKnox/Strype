@@ -11,14 +11,14 @@ namespace Strype {
 	
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application(const std::string& name)
 	{
 		STY_PROFILE_FUNCTION();
 
 		STY_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		m_Window = Window::Create();
+		m_Window = Window::Create(WindowProps(name));
 		m_Window->SetEventCallback(STY_BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
@@ -42,6 +42,11 @@ namespace Strype {
 	void Application::PushOverlay(Layer* layer)
 	{
 		m_LayerStack.PushOverlay(layer);
+	}
+
+	void Application::Close()
+	{
+		m_Running = false;
 	}
 
 	void Application::OnEvent(Event& e)
