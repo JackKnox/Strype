@@ -169,7 +169,7 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;OpenAL32.lib;sndfile.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|Win32'">
@@ -246,7 +246,7 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GLAD.lib;glfw3.lib;Imgui.lib;OpenAL32.lib;sndfile.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -290,9 +290,10 @@
     <ClInclude Include="src\API\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\API\GLFW\GlfwInput.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\Strype\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Strype\Sub Modules\Audio\Audio.h" />
+    <ClInclude Include="src\Strype\Sub Modules\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\API\GLFW\GlfwWindow.h" />
-    <ClInclude Include="src\Strype\Core\Input.h" />
+    <ClInclude Include="src\Strype\Sub Modules\Input\Input.h" />
     <ClInclude Include="src\Strype\Renderer\Buffer.h" />
     <ClInclude Include="src\Strype\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Strype\Renderer\RenderCommand.h" />
@@ -300,7 +301,6 @@
     <ClInclude Include="src\Strype\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Strype\Renderer\Shader.h" />
     <ClInclude Include="src\Strype\Renderer\Texture.h" />
-    <ClInclude Include="src\Strype\Core\Audio.h" />
     <ClInclude Include="src\stypch.h" />
     <ClInclude Include="src\Strype\Core\Application.h" />
     <ClInclude Include="src\Strype\Core\Core.h" />
@@ -317,8 +317,7 @@
     <ClInclude Include="src\Strype\Renderer\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Strype\Core\Audio.cpp" />
-    <ClCompile Include="src\Strype\Core\Input.cpp" />
+    <ClCompile Include="src\Strype\Sub Modules\Input\Input.cpp" />
     <ClCompile Include="src\Strype\Core\Window.cpp" />
     <ClCompile Include="src\Strype\Renderer\CameraController.cpp" />
     <ClCompile Include="src\API\OpenAL\OpenALAudio.cpp" />
@@ -332,7 +331,8 @@
     <ClCompile Include="src\API\GLFW\GlfwInput.cpp" />
     <ClCompile Include="src\API\GLFW\GlfwKeys.h" />
     <ClCompile Include="src\API\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\Strype\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Strype\Sub Modules\Audio\Audio.cpp" />
+    <ClCompile Include="src\Strype\Sub Modules\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\API\GLFW\GlfwWindow.cpp" />
     <ClCompile Include="src\Strype\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Strype\Renderer\GraphicsContext.cpp" />

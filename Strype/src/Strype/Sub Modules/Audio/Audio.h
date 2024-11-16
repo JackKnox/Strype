@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Strype/Core/Core.h"
 #include <string>
+
+#include "Strype/Core/Core.h"
 
 namespace Strype {
 

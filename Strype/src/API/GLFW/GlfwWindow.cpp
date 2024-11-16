@@ -18,11 +18,15 @@ namespace Strype {
 
 	GlfwWindow::GlfwWindow(const WindowProps& props)
 	{
+		STY_PROFILE_FUNCTION();
+
 		Init(props);
 	}
 
 	GlfwWindow::~GlfwWindow()
 	{
+		STY_PROFILE_FUNCTION();
+
 		Shutdown();
 	}
 
@@ -36,13 +40,17 @@ namespace Strype {
 
 		if (s_GLFWWindowCount == 0)
 		{
+			STY_PROFILE_SCOPE("glfwInit");
 			int success = glfwInit();
 			STY_CORE_ASSERT(success, "Could not intialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 		}
 
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		++s_GLFWWindowCount;
+		{
+			STY_PROFILE_SCOPE("glfwCreateWindow");
+			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+			++s_GLFWWindowCount;
+		}
 
 		m_Context = GraphicsContext::Create(m_Window);
 		m_Context->Init();
@@ -157,12 +165,16 @@ namespace Strype {
 
 	void GlfwWindow::OnUpdate()
 	{
+		STY_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
 
 	void GlfwWindow::SetVSync(bool enabled)
 	{
+		STY_PROFILE_FUNCTION();
+
 		if (enabled)
 			glfwSwapInterval(1);
 		else

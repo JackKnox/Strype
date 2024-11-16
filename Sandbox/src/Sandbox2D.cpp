@@ -12,40 +12,33 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
+	STY_PROFILE_FUNCTION();
+
 	m_CheckerboardTexture = Strype::Texture::Create("assets/textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach()
 {
+	STY_PROFILE_FUNCTION();
 }
 
 void Sandbox2D::OnUpdate(Strype::Timestep ts)
 {
 	STY_PROFILE_FUNCTION();
 
-	// Update
-	{
-		STY_PROFILE_SCOPE("CameraController::OnUpdate");
-		m_CameraController.OnUpdate(ts);
-	}
+	m_CameraController.OnUpdate(ts);
 
 	// Render
-	{
-		STY_PROFILE_SCOPE("Renderer Prep");
-		Strype::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-		Strype::RenderCommand::Clear();
-	}
+	Strype::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+	Strype::RenderCommand::Clear();
 
-	{
-		STY_PROFILE_SCOPE("Renderer Draw");
-		Strype::Renderer::BeginScene(m_CameraController.GetCamera());
+	Strype::Renderer::BeginScene(m_CameraController.GetCamera());
 
-		Strype::Renderer::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f);
-		Strype::Renderer::DrawRotatedQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
-		Strype::Renderer::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_SquareColor);
+	Strype::Renderer::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f);
+	Strype::Renderer::DrawRotatedQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
+	Strype::Renderer::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_SquareColor);
 
-		Strype::Renderer::EndScene();
-	}
+	Strype::Renderer::EndScene();
 }
 
 void Sandbox2D::OnImGuiRender()

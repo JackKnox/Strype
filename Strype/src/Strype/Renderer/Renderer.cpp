@@ -18,6 +18,8 @@ namespace Strype {
 
 	void Renderer::Init()
 	{
+		STY_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
 		s_Data = new Renderer2DStorage();
 		s_Data->QuadVertexArray = VertexArray::Create();
@@ -51,6 +53,8 @@ namespace Strype {
 
 	void Renderer::Shutdown()
 	{
+		STY_PROFILE_FUNCTION();
+
 		delete s_Data;
 	}
 
@@ -61,12 +65,15 @@ namespace Strype {
 
 	void Renderer::BeginScene(Camera& camera)
 	{
+		STY_PROFILE_FUNCTION();
+
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
 
 	void Renderer::EndScene()
 	{
+		STY_PROFILE_FUNCTION();
 	}
 
 	void Renderer::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
@@ -76,6 +83,8 @@ namespace Strype {
 
 	void Renderer::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
+		STY_PROFILE_FUNCTION();
+
 		s_Data->TextureShader->SetFloat4("u_Color", color);
 		s_Data->WhiteTexture->Bind();
 
@@ -93,6 +102,8 @@ namespace Strype {
 
 	void Renderer::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture>& texture, float tilingFactor, const glm::vec4& tintColor)
 	{
+		STY_PROFILE_FUNCTION();
+
 		s_Data->TextureShader->SetFloat4("u_Color", tintColor);
 		s_Data->TextureShader->SetFloat("u_TilingFactor", tilingFactor);
 		texture->Bind();
@@ -112,6 +123,8 @@ namespace Strype {
 
 	void Renderer::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color)
 	{
+		STY_PROFILE_FUNCTION();
+
 		s_Data->TextureShader->SetFloat4("u_Color", color);
 		s_Data->TextureShader->SetFloat("u_TilingFactor", 1.0f);
 		s_Data->WhiteTexture->Bind();
@@ -131,6 +144,7 @@ namespace Strype {
 
 	void Renderer::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture>& texture, float tilingFactor, const glm::vec4& tintColor)
 	{
+		STY_PROFILE_FUNCTION();
 
 		s_Data->TextureShader->SetFloat4("u_Color", tintColor);
 		s_Data->TextureShader->SetFloat("u_TilingFactor", tilingFactor);

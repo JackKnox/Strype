@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Strype/Core/Audio.h"
+#include "Strype/Sub Modules/Audio/Audio.h"
 
 #include <AL/al.h>
 #include <AL/alc.h>

@@ -37,4 +37,5 @@ namespace Strype {
     void OpenALAudio::PlaySoundImpl(std::string& filepath)
     {
     }
+
 }

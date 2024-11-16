@@ -8,13 +8,12 @@
 
 #include "Strype/Core/Timestep.h"
 
-// ---Sub Modules------------------------
-#include "Strype/Core/Input.h"
-#include "Strype/Core/Audio.h"
+// ---Sub Modules---------------------
+#include "Strype/Sub Modules/Input/Input.h"
+#include "Strype/Sub Modules/Audio/Audio.h"
 #include "Strype/Renderer/CameraController.h"
+#include "Strype/Sub Modules/ImGui/ImGuiLayer.h"
 // -----------------------------------
-
-#include "Strype/ImGui/ImGuiLayer.h"
 
 // ---Renderer------------------------
 #include "Strype/Renderer/Renderer.h"
@@ -26,5 +25,7 @@
 #include "Strype/Renderer/Camera.h"
 // -----------------------------------
 
+// ---Libraries-----------------------
 #include <glm/glm.hpp>
 #include <imgui/imgui.h>
+// -----------------------------------

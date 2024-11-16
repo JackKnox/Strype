@@ -15,6 +15,8 @@ namespace Strype {
 
 	void OpenGLContext::Init()
 	{
+		STY_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_WindowHandle);
 
 		int status = gladLoadGL();
@@ -28,6 +30,8 @@ namespace Strype {
 
 	void OpenGLContext::SwapBuffers()
 	{
+		STY_PROFILE_FUNCTION();
+
 		glfwSwapBuffers(m_WindowHandle);
 	}
 }

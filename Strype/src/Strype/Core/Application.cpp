@@ -4,7 +4,7 @@
 
 #include "Strype/Core/Log.h"
 #include "Strype/Renderer/Renderer.h"
-#include "Strype/Core/Audio.h"
+#include "Strype/Sub Modules/Audio/Audio.h"
 
 #include <glfw/glfw3.h>
 
@@ -14,6 +14,8 @@ namespace Strype {
 
 	Application::Application()
 	{
+		STY_PROFILE_FUNCTION();
+
 		STY_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
@@ -29,6 +31,8 @@ namespace Strype {
 
 	Application::~Application()
 	{
+		STY_PROFILE_FUNCTION();
+
 		Renderer::Shutdown();
 		Audio::Shutdown();
 	}
@@ -59,22 +63,34 @@ namespace Strype {
 
 	void Application::Run()
 	{
+		STY_PROFILE_FUNCTION();
+
 		while (m_Running)
 		{
+			STY_PROFILE_SCOPE("RunLoop");
+
 			float time = (float)glfwGetTime();
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (!m_Minimized)
 			{
+				STY_PROFILE_SCOPE("LayerStack::OnUpdate");
+
 				for (Layer* layer : m_LayerStack)
 					layer->OnUpdate(timestep);
 			}
 
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
-			m_ImGuiLayer->End();
+			{
+			#ifdef STY_DEBUG
+				STY_PROFILE_SCOPE("LayerStack::OnImGuiRender");
+
+				m_ImGuiLayer->Begin();
+				for (Layer* layer : m_LayerStack)
+					layer->OnImGuiRender();
+				m_ImGuiLayer->End();
+			#endif // STY_DEBUG
+			}
 
 			m_Window->OnUpdate();
 		}
@@ -88,6 +104,8 @@ namespace Strype {
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		STY_PROFILE_FUNCTION();
+
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;

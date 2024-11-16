@@ -6,13 +6,36 @@
 
 namespace Strype {
 
+	bool GlfwInput::IsKeyOnImpl(int keycode)
+	{
+		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		auto state = glfwGetKey(window, keycode);
 
+		return state == GLFW_PRESS || state == GLFW_REPEAT;
+	}
 
 	bool GlfwInput::IsKeyPressedImpl(int keycode)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		auto state = glfwGetKey(window, keycode);
-		return state == GLFW_PRESS || state == GLFW_REPEAT;
+
+		int currentState = glfwGetKey(window, keycode);
+		int previousState = m_KeyStates.count(keycode) ? m_KeyStates[keycode] : GLFW_RELEASE;
+
+		m_KeyStates[keycode] = currentState;
+
+		return currentState == GLFW_PRESS && previousState == GLFW_RELEASE;
+	}
+
+	bool GlfwInput::IsKeyReleasedImpl(int keycode)
+	{
+		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+
+		int currentState = glfwGetKey(window, keycode);
+		int previousState = m_KeyStates.count(keycode) ? m_KeyStates[keycode] : GLFW_RELEASE;
+
+		m_KeyStates[keycode] = currentState;
+
+		return currentState == GLFW_RELEASE && previousState == GLFW_PRESS;
 	}
 
 	bool GlfwInput::IsMouseButtonPressedImpl(int button)
