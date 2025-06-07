@@ -44,7 +44,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-msvc@v1
+
+    - name: Setup MSVC environment (Windows only)
+      if: runner.os == 'Windows'
+      shell: cmd
+      run: call "C:\Program Files (x86)\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
 
     - name: Install Ninja (Linux)
       if: runner.os == 'Linux'
