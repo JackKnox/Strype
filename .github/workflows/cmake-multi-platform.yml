@@ -44,6 +44,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - uses: actions/setup-msvc@v1
 
     - name: Install Ninja (Linux)
       if: runner.os == 'Linux'
