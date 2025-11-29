@@ -1,6 +1,6 @@
 # Strype [![CMake build](https://github.com/JackJackStudios/Strype/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/JackJackStudios/Strype/actions/workflows/cmake-multi-platform.yml)
-[!IMPORTANT] 
-    This project is nolonger actively maintained, please note stability is not guaranteed.
+> [!WARNING] 
+> **This project is no longer actively maintained, please note stability is not guaranteed.**
 
 **Strype** is a modern, early-stage 2D game engine built for **pixel art**, **super-fast rendering**, and **rapid iteration**.  
 Currently tested on **Windows x64** and **Ubuntu ARM64**.
