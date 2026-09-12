@@ -19,6 +19,8 @@ add_subdirectory(Strype)
 add_subdirectory(Strype-Editor)
 add_subdirectory(Strype-Runtime)
 
+add_subdirectory(Coral)
+
 # Libraries
 FetchContent_Declare(
     AGI
@@ -49,13 +51,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(magic_enum)
 
 FetchContent_Declare(
-    Coral
-    GIT_REPOSITORY https://github.com/JackKnox/Coral.git
-    GIT_TAG        main
-)
-FetchContent_MakeAvailable(Coral)
-
-FetchContent_Declare(
     ImGuizmo
     GIT_REPOSITORY https://github.com/JackKnox/ImGuizmo.git
     GIT_TAG        master
@@ -72,7 +67,7 @@ FetchContent_MakeAvailable(miniaudio)
 FetchContent_Declare(
     freetype
     GIT_REPOSITORY https://github.com/freetype/freetype.git
-    GIT_TAG VER-2-13-2
+    GIT_TAG VER-2-14-3
 )
 FetchContent_MakeAvailable(freetype)
 

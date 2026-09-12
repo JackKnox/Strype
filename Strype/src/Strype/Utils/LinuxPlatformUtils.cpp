@@ -11,7 +11,7 @@ namespace Strype {
 
 	std::filesystem::path FileDialogs::OpenFile(const char* filter)
 	{
-		return std::filesystem::path();
+	    return std::filesystem::path();
 	}
 
 	std::filesystem::path FileDialogs::SaveFile(const char* filter)
@@ -21,7 +21,7 @@ namespace Strype {
 
 	std::filesystem::path FileDialogs::OpenFolder()
 	{
-		return std::filesystem::path();
+ 	    return std::filesystem::path();
 	}
 
 	bool PlatformUtils::StartProcess(std::string command)
